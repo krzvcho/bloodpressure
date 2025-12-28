@@ -1,20 +1,12 @@
 // import { useLoaderData } from 'react-router-dom';
+import type { FC } from 'react';
 import { Link } from 'react-router-dom';
-
+import type { EventItem } from '../api/events-types';
 import classes from './EventsList.module.css';
 
 
-import type { FC } from 'react';
-
-type Event = {
-  id: string;
-  title: string;
-  image: string;
-  date: string;
-};
-
 interface EventsListProps {
-  events: Event[];
+  events: EventItem[];
 }
 
 const EventsList: FC<EventsListProps> = ({ events }) => {

@@ -6,18 +6,20 @@ import { useState, FormEvent } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { createEvent, updateEvent } from '../api/events-api';
 import { getAuthToken } from '../../../util/auth';
-
+import type { EventItem } from '../api/events-types';
 import classes from './EventForm.module.css';
+// import { useForm, SubmitHandler } from "react-hook-form"
+
+// type Inputs = {
+//   title: string;
+//   image: string;
+//   date: string;
+//   description: string;
+// };
 
 type EventFormProps = {
   method: 'post' | 'patch';
-  event?: {
-    id: string;
-    title: string;
-    image: string;
-    date: string;
-    description: string;
-  };
+  event?: EventItem;
 };
 
 type FormErrors = Record<string, string> | null;
@@ -26,6 +28,8 @@ function EventForm({ method, event }: EventFormProps): JSX.Element {
   const navigate = useNavigate();
   const navigation = useNavigation();
   const token = getAuthToken();
+
+  //const {register, handleSubmit, formState: { errors }} = useForm<Inputs>();
 
   const [formErrors, setFormErrors] = useState<FormErrors>(null);
 

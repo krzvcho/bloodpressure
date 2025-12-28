@@ -3,17 +3,10 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteEvent } from "../api/events-api";
 import classes from "./EventItem.module.css";
 import type { FC } from "react";
-
-type Event = {
-  id: string;
-  title: string;
-  image: string;
-  date: string;
-  description: string;
-};
+import type { EventItem } from "../api/events-types";
 
 interface EventItemProps {
-  event: Event;
+  event: EventItem;
 }
 
 const EventItem: FC<EventItemProps> = ({ event }) => {
