@@ -1,19 +1,34 @@
-import { Outlet, useNavigation } from 'react-router-dom';
+import { Outlet, useNavigation } from "react-router-dom";
 
-import MainNavigation from './components/MainNavigation';
-
+import MainNavigation from "./components/MainNavigation";
+import Footer from "./components/Footer";
+import { Box } from "@mui/material";
 
 function RootLayout(): JSX.Element {
   const navigation = useNavigation();
 
   return (
-    <>
-      <MainNavigation />
-      <main>
-        {navigation.state === 'loading' && <p>Loading...</p>}
+    <Box
+      sx={{
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
+      <Box component="header">
+        <MainNavigation />
+      </Box>
+      <Box
+        component="main"
+        sx={{
+          flexGrow: 1,
+        }}
+      >
+        {navigation.state === "loading" && <p>Loading...</p>}
         <Outlet />
-      </main>
-    </>
+      </Box>
+      <Footer />
+    </Box>
   );
 }
 

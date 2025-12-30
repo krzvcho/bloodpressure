@@ -1,80 +1,64 @@
 import { NavLink, Form, useRouteLoaderData } from "react-router-dom";
-import { AppBar, Toolbar, Button, Box } from "@mui/material";
+import { AppBar, Toolbar, Button, Box, RadioGroup } from "@mui/material";
 
 function MainNavigation(): JSX.Element {
-  const token = useRouteLoaderData('root') as string | null;
+  const token = useRouteLoaderData("root") as string | null;
 
   const navLinkStyle = {
     textDecoration: "none",
-    color: "inherit"
+    color: "inherit",
   };
 
   const activeStyle = {
-    borderBottom: "2px solid white"
+    borderBottom: "2px solid white",
   };
 
   return (
     <AppBar position="static">
       <Toolbar>
         <Box sx={{ display: "flex", gap: 2, flexGrow: 1 }}>
-          <NavLink
-            to="/"
-            style={navLinkStyle}
-            end
-          >
+          <NavLink to="/" style={navLinkStyle} end>
             {({ isActive }) => (
-              <Button 
-                color="inherit"
-                sx={isActive ? activeStyle : {}}
-              >
+              <Button color="inherit" sx={isActive ? activeStyle : {}}>
                 Home
               </Button>
             )}
           </NavLink>
-
-          <NavLink
-            to="/events"
-            style={navLinkStyle}
-          >
+          <NavLink to="/rwd" style={navLinkStyle} end>
             {({ isActive }) => (
-              <Button 
-                color="inherit"
-                sx={isActive ? activeStyle : {}}
-              >
-                Events
+              <Button color="inherit" sx={isActive ? activeStyle : {}}>
+                RWD Playground
               </Button>
             )}
           </NavLink>
 
-          {!token && (
-            <NavLink
-              to="/auth?mode=login"
-              style={navLinkStyle}
-            >
+          <NavLink to="/events" style={navLinkStyle}>
+            {({ isActive }) => (
+              <Button color="inherit" sx={isActive ? activeStyle : {}}>
+                Events
+              </Button>
+            )}
+          </NavLink>
+        </Box>
+
+        {!token && (
+          <Box>
+            <NavLink to="/auth?mode=login" style={navLinkStyle}>
               {({ isActive }) => (
-                <Button 
-                  color="inherit"
-                  sx={isActive ? activeStyle : {}}
-                >
-                  Authentication
+                <Button color="inherit" sx={isActive ? activeStyle : {}}>
+                  Login
                 </Button>
               )}
             </NavLink>
-          )}
-        </Box>
-
+          </Box>
+        )}
         {token && (
           <Form method="post" action="/logout">
-            <Button 
-              type="submit"
-              color="inherit"
-              variant="outlined"
-              sx={{ borderColor: "white" }}
-            >
+            <Button type="submit" color="inherit" variant="outlined" sx={{ borderColor: "white" }}>
               Logout
             </Button>
           </Form>
-        )}
+        )}       
       </Toolbar>
     </AppBar>
   );

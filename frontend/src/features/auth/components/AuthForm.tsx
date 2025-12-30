@@ -1,5 +1,3 @@
-// import { useState } from 'react';
-
 import { Form, Link, useSearchParams, useActionData, useNavigation } from "react-router-dom";
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -7,7 +5,6 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
-
 
 function AuthForm(): JSX.Element {
   const data = useActionData() as { errors?: Record<string, string>; message?: string } | undefined;

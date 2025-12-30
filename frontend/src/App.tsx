@@ -1,5 +1,5 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+// import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import EditEventPage from "./features/events/EditEvent";
 import ErrorPage from "./features/layout/Error";
@@ -9,11 +9,11 @@ import EventsRootLayout from "./features/events/EventsRoot";
 import HomePage from "./features/home/Home";
 import NewEventPage from "./features/events/NewEvent";
 import RootLayout from "./features/layout/Root";
-import AuthenticationPage, {
-  action as authAction,
-} from "./features/auth/Authentication";
+import AuthenticationPage, { action as authAction } from "./features/auth/Authentication";
+import RWDPlaygroundPage from "./features/rwdplayground/RwdPlaygroundPage";
 import { action as logoutAction } from "./features/auth/Logout";
 import { tokenLoader, checkAuthLoader } from "./util/auth";
+import Providers from "./providers/Providers";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +24,7 @@ const router = createBrowserRouter([
     loader: tokenLoader,
     children: [
       { index: true, element: <HomePage /> },
+      { path: "rwd", element: <RWDPlaygroundPage /> },
       { path: "auth", element: <AuthenticationPage />, action: authAction },
       { path: "logout", action: logoutAction },
       {
@@ -40,7 +41,7 @@ const router = createBrowserRouter([
             children: [
               {
                 index: true,
-                element: <EventDetailPage />,                
+                element: <EventDetailPage />,
               },
               {
                 path: "edit",
@@ -60,15 +61,11 @@ const router = createBrowserRouter([
   },
 ]);
 
-const queryClient = new QueryClient();
-// @ts-ignore
-window.__TANSTACK_QUERY_CLIENT__ = queryClient;
-
 function App(): JSX.Element {
   return (
-    <QueryClientProvider client={queryClient}>
+    <Providers>
       <RouterProvider router={router} />
-    </QueryClientProvider>
+    </Providers>
   );
 }
 
