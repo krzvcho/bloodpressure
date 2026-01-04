@@ -1,5 +1,4 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-// import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import EditEventPage from "./features/events/EditEvent";
 import ErrorPage from "./features/layout/Error";
@@ -11,9 +10,12 @@ import NewEventPage from "./features/events/NewEvent";
 import RootLayout from "./features/layout/Root";
 import AuthenticationPage, { action as authAction } from "./features/auth/Authentication";
 import RWDPlaygroundPage from "./features/rwdplayground/RwdPlaygroundPage";
+import BloodRecordsDashboard from "./features/bloodrecords/pages/BloodRecordsDashboards";
 import { action as logoutAction } from "./features/auth/Logout";
-import { tokenLoader, checkAuthLoader } from "./util/auth";
+import { tokenLoader, checkAuthLoader, getLoggedUserData } from "./util/auth";
 import Providers from "./providers/Providers";
+import EditBloodRecord from "./features/bloodrecords/pages/EditBloodRecord";
+import BloodRecordDetail from "./features/bloodrecords/pages/BloodRecordDetail";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +29,17 @@ const router = createBrowserRouter([
       { path: "rwd", element: <RWDPlaygroundPage /> },
       { path: "auth", element: <AuthenticationPage />, action: authAction },
       { path: "logout", action: logoutAction },
+      {
+        path: "bloodrecords",
+        loader: getLoggedUserData,
+        id: "bloodrecords-root",
+        children: [
+          { index: true, element: <BloodRecordsDashboard /> },
+          { path: "new", element: <EditBloodRecord /> },
+          { path: ":recordId", element: <BloodRecordDetail /> },
+          { path: ":recordId/edit", element: <EditBloodRecord /> }          
+        ],
+      },
       {
         path: "events",
         element: <EventsRootLayout />,

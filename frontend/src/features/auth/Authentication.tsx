@@ -40,5 +40,7 @@ export async function action({ request }: ActionFunctionArgs) {
   const token = resData.token;
 
   localStorage.setItem('token', token);
+  localStorage.setItem('user_name', resData.user.email);
+  localStorage.setItem('user_id', resData.user.id);
   return redirect('/');
 }

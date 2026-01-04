@@ -10,7 +10,7 @@ interface EventItemProps {
 }
 
 const EventItem: FC<EventItemProps> = ({ event }) => {
-  const token = useRouteLoaderData("root") as string | null;
+  const { token } = useRouteLoaderData("root") as { userName: string | null; userId: string | null; token: string | null };
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 

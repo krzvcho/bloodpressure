@@ -5,7 +5,7 @@ import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 
 function EventsNavigation(): JSX.Element {
-  const token = useRouteLoaderData("root") as string | null;
+  const { token } = useRouteLoaderData("root") as { userName: string | null; userId: string | null; token: string | null };
 
   return (
     <Stack direction="row" spacing={2} justifyContent="center" alignItems="center" gap={2} margin={2}>

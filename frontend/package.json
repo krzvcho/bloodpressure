@@ -6,6 +6,8 @@
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
     "@mui/material": "^7.3.6",
+    "@mui/x-charts": "^8.23.0",
+    "@mui/x-date-pickers": "^8.23.0",
     "@tanstack/react-query": "^5.90.12",
     "@tanstack/react-query-devtools": "^5.91.1",
     "@testing-library/jest-dom": "^6.6.3",
@@ -13,10 +15,12 @@
     "@testing-library/user-event": "^14.5.2",
     "@types/react": "^18.2.41",
     "@types/react-dom": "^18.2.17",
+    "dayjs": "^1.11.19",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.69.0",
-    "react-router-dom": "^6.4.1"
+    "react-router-dom": "^6.4.1",
+    "zustand": "^5.0.9"
   },
   "scripts": {
     "dev": "vite",

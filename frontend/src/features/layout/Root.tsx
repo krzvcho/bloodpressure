@@ -1,5 +1,5 @@
 import { Outlet, useNavigation } from "react-router-dom";
-
+import { AuthErrorModal } from "./components/AuthErrorModal";
 import MainNavigation from "./components/MainNavigation";
 import Footer from "./components/Footer";
 import { Box } from "@mui/material";
@@ -26,6 +26,7 @@ function RootLayout(): JSX.Element {
       >
         {navigation.state === "loading" && <p>Loading...</p>}
         <Outlet />
+        <AuthErrorModal />
       </Box>
       <Footer />
     </Box>
